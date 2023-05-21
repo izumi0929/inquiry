@@ -11,6 +11,7 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, Props>(
     <>
       <textarea
         className={props.errorMessage ? styles.textarea_error : styles.textarea}
+        rows={props.rows || 6}
         {...props}
         ref={ref}
       />

@@ -1,5 +1,15 @@
 .textarea {
   width: 100%;
+  min-height: 120px;
+  padding: 6px 12px;
+  font-size: 16px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: 1px solid var(--blue);
 }
 
 .textarea_error {

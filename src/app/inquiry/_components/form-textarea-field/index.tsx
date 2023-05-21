@@ -1,8 +1,8 @@
 import { FC } from "react"
 import { UseFormRegister } from "react-hook-form"
 
-import { FormInput } from "@/app/_components/form-input"
 import { FormLabel } from "@/app/_components/form-label"
+import { FormTextarea } from "@/app/_components/form-textarea"
 import {
   FormItem,
   FormValues
@@ -22,8 +22,7 @@ export const FormTextareaField: FC<Props> = ({
   return (
     <div>
       <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
-      <FormInput
-        type={formItem.type}
+      <FormTextarea
         {...register(formItem.name, { required: formItem.required })}
         errorMessage={errorMessage}
       />
