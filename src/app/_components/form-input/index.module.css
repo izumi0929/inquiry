@@ -8,6 +8,7 @@
 
 .input:focus {
   border: 1px solid var(--blue);
+  box-shadow: 0 0 0 1px var(--blue);
   outline: none;
 }
 
