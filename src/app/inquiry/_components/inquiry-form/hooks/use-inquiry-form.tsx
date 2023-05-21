@@ -1,9 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useCallback } from "react"
+import { useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { Button } from "@/app/_components/button"
 import { FormCheckbox } from "@/app/_components/form-checkbox"
+import { FormCheckboxConfirm } from "@/app/_components/form-checkbox/confirm"
+import { FormConfirmField } from "@/app/inquiry/_components/form-confirm-field"
 import { FormInputField } from "@/app/inquiry/_components/form-input-field"
 import { FormSelectField } from "@/app/inquiry/_components/form-select-field"
 import { FormTextareaField } from "@/app/inquiry/_components/form-textarea-field"
@@ -15,7 +18,7 @@ import {
 const inquiryFormSchemea = z.object({
   name: z.string().min(1, { message: "required" }).max(100),
   furigana: z.string().min(1, { message: "required" }).max(100),
-  company: z.string().min(1).max(100),
+  company: z.string().max(100),
   email: z.string().email(),
   postalcode: z.string().max(20),
   address: z.string().max(1000),
@@ -41,16 +44,51 @@ const formDefaultValues = {
 } as const satisfies Zod.infer<typeof inquiryFormSchemea>
 
 export const useInquiryForm = () => {
+  const [confirmMode, setConfirmMode] = useState(false)
+
+  const toggleConfirmMode = useCallback(() => {
+    setConfirmMode((prev) => !prev)
+  }, [])
+
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors }
   } = useForm<FormValues>({
     defaultValues: formDefaultValues,
     resolver: zodResolver(inquiryFormSchemea)
   })
 
-  const renderFormItem = useCallback(
+  const _renderFormItemConfirm = useCallback(
+    (formItem: FormItem) => {
+      switch (formItem.type) {
+        case "checkbox":
+          return <FormCheckboxConfirm label={formItem.label} />
+        case "select":
+          return (
+            <FormConfirmField
+              formItem={formItem}
+              value={
+                formItem.options.find(
+                  (option) => option.value === getValues(formItem.name)
+                )?.label || "-"
+              }
+            />
+          )
+        default:
+          return (
+            <FormConfirmField
+              formItem={formItem}
+              value={(getValues(formItem.name) as string) || "-"}
+            />
+          )
+      }
+    },
+    [getValues]
+  )
+
+  const _renderFormItemEdit = useCallback(
     (formItem: FormItem) => {
       switch (formItem.type) {
         case "textarea":
@@ -90,5 +128,39 @@ export const useInquiryForm = () => {
     },
     [errors, register]
   )
-  return { renderFormItem, handleSubmit }
+
+  const renderFormItem = useCallback(
+    (formItem: FormItem) => {
+      return confirmMode
+        ? _renderFormItemConfirm(formItem)
+        : _renderFormItemEdit(formItem)
+    },
+    [confirmMode, _renderFormItemConfirm, _renderFormItemEdit]
+  )
+
+  const renderButtons = useCallback(() => {
+    if (confirmMode) {
+      return (
+        <div>
+          <Button type="button" onClick={toggleConfirmMode}>
+            戻る
+          </Button>
+          <Button type="submit">送信</Button>
+        </div>
+      )
+    }
+    return (
+      <Button type="button" onClick={handleSubmit(toggleConfirmMode)}>
+        内容を確認
+      </Button>
+    )
+  }, [confirmMode, toggleConfirmMode, handleSubmit])
+
+  return {
+    renderFormItem,
+    renderButtons,
+    handleSubmit,
+    toggleConfirmMode,
+    confirmMode
+  }
 }

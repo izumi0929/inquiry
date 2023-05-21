@@ -1,7 +1,6 @@
 "use client"
 import { FC } from "react"
 
-import { Button } from "@/app/_components/button"
 import { Link } from "@/app/_components/link"
 import { useInquiryForm } from "@/app/inquiry/_components/inquiry-form/hooks/use-inquiry-form"
 import { FormItem } from "@/app/inquiry/_components/inquiry-form/type"
@@ -100,21 +99,18 @@ const formItems = [
 ] as const satisfies readonly FormItem[]
 
 export const InquiryForm: FC = () => {
-  const { renderFormItem, handleSubmit } = useInquiryForm()
+  const { renderFormItem, renderButtons } = useInquiryForm()
 
   return (
     <form
       className={styles.form}
+      // TODO
       action="/"
-      // eslint-disable-next-line no-console
-      onSubmit={handleSubmit((d) => console.log(d))}
     >
       {formItems.map((item) => (
         <div key={item.name}>{renderFormItem(item)}</div>
       ))}
-      <div className={styles.submitButtonWrapper}>
-        <Button>内容を確認</Button>
-      </div>
+      <div className={styles.submitButtonWrapper}>{renderButtons()}</div>
     </form>
   )
 }

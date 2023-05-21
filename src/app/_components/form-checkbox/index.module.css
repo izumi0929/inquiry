@@ -19,7 +19,21 @@
   position: relative;
 }
 
+.checkbox_confirm {
+  composes: checkbox;
+  cursor: default;
+}
+
 .input {
+  -moz-opacity: 0;
+  opacity: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+}
+
+/* :focusまで引き継がれるためinputはcomposeしない */
+.input_confirm {
   -moz-opacity: 0;
   opacity: 0;
   -webkit-appearance: none;
@@ -77,5 +91,9 @@
 }
 
 .input:checked + .checkbox_icon::after {
+  opacity: 1;
+}
+
+.input_confirm:checked + .checkbox_icon::after {
   opacity: 1;
 }

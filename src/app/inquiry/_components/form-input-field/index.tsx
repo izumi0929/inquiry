@@ -10,8 +10,8 @@ import {
 
 type Props = {
   formItem: FormItem
-  errorMessage?: string
   register: UseFormRegister<FormValues>
+  errorMessage?: string
 }
 
 export const FormInputField: FC<Props> = ({
