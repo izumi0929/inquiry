@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
 }
 
 .input_error {
@@ -14,6 +13,12 @@
   font-size: 10px;
 }
 
+.checkbox {
+  cursor: pointer;
+  padding-left: 32px;
+  position: relative;
+}
+
 .input {
   -moz-opacity: 0;
   opacity: 0;
@@ -22,19 +27,10 @@
   position: absolute;
 }
 
-.checkbox {
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  padding-top: 2px;
-  padding-left: 32px;
-  position: relative;
-  width: auto;
-}
 /* チェックボックス枠 */
-.checkbox::before {
-  background: #fff;
-  border: 1px solid #231815;
+.checkbox_icon::before {
+  background: white;
+  border: 1px solid black;
   content: "";
   display: block;
   height: 16px;
@@ -45,7 +41,7 @@
   width: 16px;
 }
 /* チェック */
-.checkbox::after {
+.checkbox_icon::after {
   border-right: 3px solid black;
   border-bottom: 3px solid black;
   content: "";
@@ -59,10 +55,11 @@
   transform: rotate(45deg);
   width: 5px;
 }
-.input:focus + .checkbox::before {
+
+.input:focus + .checkbox_icon::before {
   box-shadow: 0 0 0 1px var(--blue);
 }
 
-.input:checked + .checkbox::after {
+.input:checked + .checkbox_icon::after {
   opacity: 1;
 }
