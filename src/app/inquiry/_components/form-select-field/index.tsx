@@ -21,17 +21,12 @@ export const FormSelectField: FC<Props> = ({
 }) => {
   return (
     <div>
-      <FormLabel required>{formItem.label}</FormLabel>
+      <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
       <FormSelect
         {...register(formItem.name, { required: formItem.required })}
         errorMessage={errorMessage}
-      >
-        {formItem.options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </FormSelect>
+        options={formItem.options}
+      />
     </div>
   )
 }
