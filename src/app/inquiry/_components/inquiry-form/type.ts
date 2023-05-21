@@ -43,9 +43,9 @@ export type FormItemEmail = FormItemBase & {
   placeholder: string
 }
 
-export type FormItemCheckbox = FormItemBase & {
+export type FormItemCheckbox = Omit<FormItemBase, "label"> & {
   type: "checkbox"
-  label: string
+  label: string | JSX.Element
 }
 
 export type FormItemNumber = FormItemBase & {

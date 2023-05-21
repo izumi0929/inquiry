@@ -1,6 +1,14 @@
+"use client"
+import { FC } from "react"
+
+import { Button } from "@/app/_components/button"
+import { Link } from "@/app/_components/link"
+import { useInquiryForm } from "@/app/inquiry/_components/inquiry-form/hooks/use-inquiry-form"
 import { FormItem } from "@/app/inquiry/_components/inquiry-form/type"
 
-export const formItems = [
+import styles from "./index.module.css"
+
+const formItems = [
   {
     type: "text",
     label: "名前(姓名)",
@@ -75,5 +83,34 @@ export const formItems = [
     name: "content",
     required: true,
     placeholder: "○○の△△が開きません"
+  },
+  {
+    type: "checkbox",
+    label: (
+      <p>
+        <Link href="https://corporate.yamap.co.jp/privacy" isExternal={true}>
+          個人情報の取り扱い
+        </Link>
+        について同意します
+      </p>
+    ),
+    name: "agree",
+    required: true
   }
 ] as const satisfies readonly FormItem[]
+
+export const InquiryForm: FC = () => {
+  const { renderFormItem, handleSubmit } = useInquiryForm()
+
+  return (
+    // eslint-disable-next-line no-console
+    <form className={styles.form} action="/" onSubmit={handleSubmit((d) => console.log(d))}>
+      {formItems.map((item) => (
+        <div key={item.name}>{renderFormItem(item)}</div>
+      ))}
+      <div className={styles.submitButtonWrapper}>
+        <Button>内容を確認</Button>
+      </div>
+    </form>
+  )
+}

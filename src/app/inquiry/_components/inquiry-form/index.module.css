@@ -1,3 +1,9 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 24px;
+}
+
 .submitButtonWrapper {
   display: grid;
   place-items: center;
