@@ -1,0 +1,15 @@
+.labelWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.label_required {
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  background-color: var(--main-red);
+}
