@@ -1,6 +1,7 @@
 :root {
-  --main-red: #c80010;
-  --link-blue: #0050c8;
+  --red: #c80010;
+  --blue: #0050c8;
+  --gray: #cbd5e0;
 }
 
 * {
