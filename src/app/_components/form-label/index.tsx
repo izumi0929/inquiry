@@ -12,7 +12,11 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => (
     <label className={styles.label} {...props} ref={ref}>
       {props.children}
     </label>
-    {props.required && <span className={styles.label_required}>必須</span>}
+    {props.required ? (
+      <span className={styles.labelChip_required}>必須</span>
+    ) : (
+      <span className={styles.labelChip_optional}>任意</span>
+    )}
   </div>
 ))
 
