@@ -16,4 +16,4 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>((props, ref) => (
   </div>
 ))
 
-FormLabel.displayName = "Button"
+FormLabel.displayName = "FormLabel"
