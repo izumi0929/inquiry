@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const Button = forwardRef<HTMLButtonElement, Props>((props, ref) => (
-  <button className={styles.input} {...props} ref={ref}>
+  <button className={styles.button} {...props} ref={ref}>
     {props.children}
   </button>
 ))

@@ -21,7 +21,7 @@ export const FormInputField: FC<Props> = ({
 }) => {
   return (
     <div>
-      <FormLabel required>{formItem.label}</FormLabel>
+      <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
       <FormInput
         type={formItem.type}
         {...register(formItem.name, { required: formItem.required })}

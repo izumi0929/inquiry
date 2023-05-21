@@ -1,3 +1,13 @@
 .button {
   min-width: 200px;
+  padding: 8px;
+  color: white;
+  background-color: black;
+  border-radius: 100vh;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.button:hover {
+  background-color: #3e3e3e;
 }
