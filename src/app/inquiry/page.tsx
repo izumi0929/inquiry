@@ -8,7 +8,9 @@ export default function Inquiry() {
       <div className={styles.headerWrapper}>
         <h1 className={styles.title}>お問い合わせフォーム</h1>
       </div>
-      <InquiryForm />
+      <div className={styles.formWrapper}>
+        <InquiryForm />
+      </div>
     </main>
   )
 }
