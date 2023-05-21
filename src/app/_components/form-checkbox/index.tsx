@@ -14,12 +14,20 @@ export const FormCheckbox = forwardRef<HTMLInputElement, Props>(
         <label className={styles.checkbox} htmlFor={props.name}>
           <input
             id={props.name}
-            className={props.errorMessage ? styles.input_error : styles.input}
+            className={styles.input}
             {...props}
             ref={ref}
             type="checkbox"
           />
-          <span className={styles.checkbox_icon}>{props.label}</span>
+          <span
+            className={
+              props.errorMessage
+                ? styles.checkbox_icon_error
+                : styles.checkbox_icon
+            }
+          >
+            {props.label}
+          </span>
         </label>
       </div>
       {props.errorMessage && (

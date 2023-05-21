@@ -22,7 +22,8 @@ const inquiryFormSchemea = z.object({
   tel: z.string().max(20),
   productId: z.string().max(100),
   title: z.string().min(1).max(100),
-  content: z.string().min(1).max(1000)
+  content: z.string().min(1).max(1000),
+  agree: z.boolean().refine((v) => v === true, { message: "required" })
 })
 
 const formDefaultValues = {
@@ -35,7 +36,8 @@ const formDefaultValues = {
   tel: "",
   productId: "",
   title: "",
-  content: ""
+  content: "",
+  agree: false
 } as const satisfies Zod.infer<typeof inquiryFormSchemea>
 
 export const useInquiryForm = () => {

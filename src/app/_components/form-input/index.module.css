@@ -11,7 +11,12 @@
 }
 
 .input_error {
+  composes: input;
   border-color: var(--red);
+}
+
+.input_error:focus {
+  outline: 1px solid var(--red);
 }
 
 .errorMessage {
