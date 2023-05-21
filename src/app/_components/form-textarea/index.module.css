@@ -1,0 +1,7 @@
+.textarea {
+  width: 100%;
+}
+
+.textarea_error {
+  border-color: var(--main-red);
+}
