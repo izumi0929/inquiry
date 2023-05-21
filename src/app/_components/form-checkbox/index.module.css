@@ -15,6 +15,7 @@
 
 .checkbox {
   cursor: pointer;
+  padding-top: 2px;
   padding-left: 32px;
   position: relative;
 }
