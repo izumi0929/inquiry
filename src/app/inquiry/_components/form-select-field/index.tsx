@@ -8,6 +8,8 @@ import {
   FormValues
 } from "@/app/inquiry/_components/inquiry-form/type"
 
+import styles from "./index.module.css"
+
 type Props = {
   formItem: FormItemSelect
   errorMessage?: string
@@ -20,7 +22,7 @@ export const FormSelectField: FC<Props> = ({
   errorMessage
 }) => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
       <FormSelect
         {...register(formItem.name, { required: formItem.required })}

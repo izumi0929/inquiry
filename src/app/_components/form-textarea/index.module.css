@@ -19,7 +19,8 @@
 }
 
 .textarea_error:focus {
-  outline: 1px solid var(--red);
+  border: 1px solid var(--red);
+  box-shadow: 0 0 0 1px var(--red);
 }
 
 .errorMessage {

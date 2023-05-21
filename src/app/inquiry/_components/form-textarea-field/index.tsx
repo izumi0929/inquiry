@@ -8,10 +8,12 @@ import {
   FormValues
 } from "@/app/inquiry/_components/inquiry-form/type"
 
+import styles from "./index.module.css"
+
 type Props = {
   formItem: FormItem
-  errorMessage?: string
   register: UseFormRegister<FormValues>
+  errorMessage?: string
 }
 
 export const FormTextareaField: FC<Props> = ({
@@ -20,7 +22,7 @@ export const FormTextareaField: FC<Props> = ({
   errorMessage
 }) => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
       <FormTextarea
         {...register(formItem.name, { required: formItem.required })}
