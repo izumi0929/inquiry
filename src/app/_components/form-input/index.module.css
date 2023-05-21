@@ -1,0 +1,12 @@
+.input {
+  width: 100%;
+}
+
+.input_error {
+  border-color: var(--main-red);
+}
+
+.errorMessage {
+  color: var(--main-red);
+  font-size: 10px;
+}
