@@ -17,7 +17,7 @@ type FormType =
   | "textarea"
   | "email"
   | "checkbox"
-  | "number"
+  | "tel"
   | "select"
   | "postalcode"
 
@@ -48,8 +48,8 @@ export type FormItemCheckbox = Omit<FormItemBase, "label"> & {
   label: string | JSX.Element
 }
 
-export type FormItemNumber = FormItemBase & {
-  type: "number"
+export type FormItemTel = FormItemBase & {
+  type: "tel"
   placeholder: string
 }
 
@@ -68,6 +68,6 @@ export type FormItem =
   | FormItemTextarea
   | FormItemEmail
   | FormItemCheckbox
-  | FormItemNumber
+  | FormItemTel
   | FormItemSelect
   | FormItemPostalcode

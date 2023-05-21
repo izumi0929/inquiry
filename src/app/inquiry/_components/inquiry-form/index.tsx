@@ -52,7 +52,7 @@ const formItems = [
     placeholder: "福岡市博多区博多駅前3-23-20博多AGビル6F"
   },
   {
-    type: "number",
+    type: "tel",
     label: "電話番号",
     name: "tel",
     required: false,
@@ -103,8 +103,12 @@ export const InquiryForm: FC = () => {
   const { renderFormItem, handleSubmit } = useInquiryForm()
 
   return (
-    // eslint-disable-next-line no-console
-    <form className={styles.form} action="/" onSubmit={handleSubmit((d) => console.log(d))}>
+    <form
+      className={styles.form}
+      action="/"
+      // eslint-disable-next-line no-console
+      onSubmit={handleSubmit((d) => console.log(d))}
+    >
       {formItems.map((item) => (
         <div key={item.name}>{renderFormItem(item)}</div>
       ))}
