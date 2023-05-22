@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}

@@ -3,11 +3,13 @@ import { useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { searchAddressByPostalcode } from "@/api/search-address"
 import { Button } from "@/app/_components/button"
 import { FormCheckbox } from "@/app/_components/form-checkbox"
 import { FormCheckboxConfirm } from "@/app/_components/form-checkbox/confirm"
 import { FormConfirmField } from "@/app/inquiry/_components/form-confirm-field"
 import { FormInputField } from "@/app/inquiry/_components/form-input-field"
+import { FormPostalcodeField } from "@/app/inquiry/_components/form-postalcode-field"
 import { FormSelectField } from "@/app/inquiry/_components/form-select-field"
 import { FormTextareaField } from "@/app/inquiry/_components/form-textarea-field"
 import {
@@ -54,13 +56,32 @@ export const useInquiryForm = () => {
     register,
     handleSubmit,
     getValues,
+    setValue,
+    setError,
+    clearErrors,
     formState: { errors }
   } = useForm<FormValues>({
     defaultValues: formDefaultValues,
     resolver: zodResolver(inquiryFormSchemea)
   })
 
-  const _renderFormItemConfirm = useCallback(
+  const searchAddress = useCallback(
+    async (postalcode: string) => {
+      clearErrors("postalcode")
+      try {
+        const res = await searchAddressByPostalcode(postalcode)
+        setValue("address", `${res.address1}${res.address2}${res.address3}`)
+      } catch (err: any) {
+        setError("postalcode", {
+          type: "manual",
+          message: err.message
+        })
+      }
+    },
+    [setValue, setError, clearErrors]
+  )
+
+  const renderFormItemConfirm = useCallback(
     (formItem: FormItem) => {
       switch (formItem.type) {
         case "checkbox":
@@ -88,7 +109,7 @@ export const useInquiryForm = () => {
     [getValues]
   )
 
-  const _renderFormItemEdit = useCallback(
+  const renderFormItemEdit = useCallback(
     (formItem: FormItem) => {
       switch (formItem.type) {
         case "textarea":
@@ -115,7 +136,17 @@ export const useInquiryForm = () => {
               errorMessage={errors[formItem.name]?.message}
             />
           )
-        // text, email, tel
+        case "postalcode":
+          return (
+            <FormPostalcodeField
+              formItem={formItem}
+              register={register}
+              errorMessage={errors[formItem.name]?.message}
+              handleSearch={async () =>
+                await searchAddress(getValues("postalcode"))
+              }
+            />
+          )
         default:
           return (
             <FormInputField
@@ -126,16 +157,16 @@ export const useInquiryForm = () => {
           )
       }
     },
-    [errors, register]
+    [errors, register, getValues, searchAddress]
   )
 
   const renderFormItem = useCallback(
     (formItem: FormItem) => {
       return confirmMode
-        ? _renderFormItemConfirm(formItem)
-        : _renderFormItemEdit(formItem)
+        ? renderFormItemConfirm(formItem)
+        : renderFormItemEdit(formItem)
     },
-    [confirmMode, _renderFormItemConfirm, _renderFormItemEdit]
+    [confirmMode, renderFormItemConfirm, renderFormItemEdit]
   )
 
   const renderButtons = useCallback(() => {

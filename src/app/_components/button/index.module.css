@@ -11,3 +11,33 @@
 .button:hover {
   background-color: #3e3e3e;
 }
+
+.button_filled_large {
+  composes: button;
+}
+
+.button_filled_small {
+  composes: button;
+  min-width: 100px;
+  padding: 6px;
+  font-size: 12px;
+}
+
+.button_outlined_large {
+  composes: button;
+  color: black;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.button_outlined_large:hover {
+  background-color: #f2f2f2;
+}
+
+.button_outlined_small {
+  composes: button_outlined_large;
+  background-color: transparent;
+  min-width: 100px;
+  padding: 6px;
+  font-size: 12px;
+}
