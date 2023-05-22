@@ -17,18 +17,25 @@ import {
   FormValues
 } from "@/app/inquiry/_components/inquiry-form/type"
 
+// 実際にはバックエンドの仕様に合わせる
 const inquiryFormSchemea = z.object({
-  name: z.string().min(1, { message: "required" }).max(100),
-  furigana: z.string().min(1, { message: "required" }).max(100),
-  company: z.string().max(100),
-  email: z.string().email(),
-  postalcode: z.string().max(20),
-  address: z.string().max(1000),
-  tel: z.string().max(20),
-  productId: z.string().max(100),
-  title: z.string().min(1).max(100),
-  content: z.string().min(1).max(1000),
-  agree: z.boolean().refine((v) => v === true, { message: "required" })
+  name: z.string().min(1, { message: "必須項目です" }).max(100),
+  furigana: z.string().min(1, { message: "必須項目です" }).max(100),
+  company: z.string().max(100, { message: "100文字以内で入力してください" }),
+  email: z.string().email("メールアドレスの形式で入力してください"),
+  postalcode: z.string().max(20, { message: "20文字以内で入力してください" }),
+  address: z.string().max(100, { message: "100文字以内で入力してください" }),
+  tel: z.string().max(20, { message: "20文字以内で入力してください" }),
+  productId: z.string(),
+  title: z
+    .string()
+    .min(1, { message: "必須項目です" })
+    .max(100, { message: "100文字以内で入力してください" }),
+  content: z
+    .string()
+    .min(1, { message: "必須項目です" })
+    .max(1000, { message: "1000文字以内で入力してください" }),
+  agree: z.boolean().refine((v) => v === true, { message: "同意が必要です" })
 })
 
 const formDefaultValues = {
