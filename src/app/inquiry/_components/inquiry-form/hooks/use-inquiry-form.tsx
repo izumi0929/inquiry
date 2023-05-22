@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useCallback, useState } from "react"
+import { FormEvent, useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -92,7 +92,13 @@ export const useInquiryForm = () => {
     (formItem: FormItem) => {
       switch (formItem.type) {
         case "checkbox":
-          return <FormCheckboxConfirm label={formItem.label} />
+          return (
+            <FormCheckboxConfirm
+              name={formItem.name}
+              label={formItem.label}
+              value={getValues(formItem.name) ? "1" : ""}
+            />
+          )
         case "select":
           return (
             <FormConfirmField
@@ -100,7 +106,7 @@ export const useInquiryForm = () => {
               value={
                 formItem.options.find(
                   (option) => option.value === getValues(formItem.name)
-                )?.label || "-"
+                )?.label || ""
               }
             />
           )
@@ -108,7 +114,7 @@ export const useInquiryForm = () => {
           return (
             <FormConfirmField
               formItem={formItem}
-              value={(getValues(formItem.name) as string) || "-"}
+              value={getValues(formItem.name) as string}
             />
           )
       }
@@ -194,11 +200,23 @@ export const useInquiryForm = () => {
     )
   }, [confirmMode, toggleConfirmMode, handleSubmit])
 
+  const handleComplete = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      const form = e.target as HTMLFormElement
+      // eslint-disable-next-line no-console
+      console.log("送信データ", getValues())
+      form.submit()
+    },
+    [getValues]
+  )
+
   return {
     renderFormItem,
     renderButtons,
     handleSubmit,
     toggleConfirmMode,
+    handleComplete,
     confirmMode
   }
 }

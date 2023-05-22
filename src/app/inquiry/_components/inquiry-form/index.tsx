@@ -99,13 +99,15 @@ const formItems = [
 ] as const satisfies readonly FormItem[]
 
 export const InquiryForm: FC = () => {
-  const { renderFormItem, renderButtons } = useInquiryForm()
+  const { renderFormItem, renderButtons, handleComplete } = useInquiryForm()
 
   return (
     <form
       className={styles.form}
-      // TODO
-      action="/"
+      action="/inquiry/api"
+      method="POST"
+      name="inquiry"
+      onSubmit={handleComplete}
     >
       {formItems.map((item) => (
         <div key={item.name}>{renderFormItem(item)}</div>

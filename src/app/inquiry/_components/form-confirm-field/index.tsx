@@ -16,7 +16,8 @@ export const FormConfirmField: FC<Props> = ({ formItem, value }) => {
       <FormLabel required={formItem.required} withChip={false}>
         {formItem.label}
       </FormLabel>
-      <p>{value}</p>
+      <p>{value || "-"}</p>
+      <input hidden name={formItem.name} value={value} />
     </div>
   )
 }
