@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { searchAddressByPostalcode } from "@/api/search-address"
-import { Button } from "@/app/_components/button"
 import { FormCheckbox } from "@/app/_components/form-checkbox"
 import { FormCheckboxConfirm } from "@/app/_components/form-checkbox/confirm"
+import { InConfirmButtons } from "@/app/inquiry/_components/action-buttons/in-confirm-buttons"
+import { InEditButtons } from "@/app/inquiry/_components/action-buttons/in-edit-buttons"
 import { FormConfirmField } from "@/app/inquiry/_components/form-confirm-field"
 import { FormInputField } from "@/app/inquiry/_components/form-input-field"
 import { FormPostalcodeField } from "@/app/inquiry/_components/form-postalcode-field"
@@ -183,20 +184,10 @@ export const useInquiryForm = () => {
   )
 
   const renderButtons = useCallback(() => {
-    if (confirmMode) {
-      return (
-        <div>
-          <Button type="button" onClick={toggleConfirmMode}>
-            戻る
-          </Button>
-          <Button type="submit">送信</Button>
-        </div>
-      )
-    }
-    return (
-      <Button type="button" onClick={handleSubmit(toggleConfirmMode)}>
-        内容を確認
-      </Button>
+    return confirmMode ? (
+      <InConfirmButtons onClickBack={toggleConfirmMode} />
+    ) : (
+      <InEditButtons onClickConfirm={handleSubmit(toggleConfirmMode)} />
     )
   }, [confirmMode, toggleConfirmMode, handleSubmit])
 
@@ -214,9 +205,6 @@ export const useInquiryForm = () => {
   return {
     renderFormItem,
     renderButtons,
-    handleSubmit,
-    toggleConfirmMode,
-    handleComplete,
-    confirmMode
+    handleComplete
   }
 }
