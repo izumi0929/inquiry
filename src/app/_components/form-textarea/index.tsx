@@ -7,17 +7,15 @@ type Props = {
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export const FormTextarea = forwardRef<HTMLTextAreaElement, Props>(
-  (props, ref) => (
+  ({ errorMessage, ...props }, ref) => (
     <>
       <textarea
-        className={props.errorMessage ? styles.textarea_error : styles.textarea}
+        className={errorMessage ? styles.textarea_error : styles.textarea}
         rows={props.rows || 6}
         {...props}
         ref={ref}
       />
-      {props.errorMessage && (
-        <p className={styles.errorMessage}>{props.errorMessage}</p>
-      )}
+      {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
     </>
   )
 )

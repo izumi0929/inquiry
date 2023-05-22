@@ -6,15 +6,15 @@ type Props = {
   errorMessage?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
-export const FormInput = forwardRef<HTMLInputElement, Props>((props, ref) => (
+export const FormInput = forwardRef<HTMLInputElement, Props>(({errorMessage, ...props}, ref) => (
   <>
     <input
-      className={props.errorMessage ? styles.input_error : styles.input}
+      className={errorMessage ? styles.input_error : styles.input}
       {...props}
       ref={ref}
     />
-    {props.errorMessage && (
-      <p className={styles.errorMessage}>{props.errorMessage}</p>
+    {errorMessage && (
+      <p className={styles.errorMessage}>{errorMessage}</p>
     )}
   </>
 ))

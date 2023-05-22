@@ -17,7 +17,7 @@ export const FormConfirmField: FC<Props> = ({ formItem, value }) => {
         {formItem.label}
       </FormLabel>
       <p>{value || "-"}</p>
-      <input hidden name={formItem.name} value={value} />
+      <input hidden name={formItem.name} defaultValue={value} />
     </div>
   )
 }

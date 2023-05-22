@@ -7,13 +7,13 @@ type Props = {
   isExternal?: boolean
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>
 
-export const Link = forwardRef<HTMLAnchorElement, Props>((props, ref) => (
+export const Link = forwardRef<HTMLAnchorElement, Props>(({isExternal, ...props}, ref) => (
   <a
     className={styles.link}
     {...props}
     ref={ref}
-    target={props.isExternal ? "_blank" : undefined}
-    rel={props.isExternal ? "noopener noreferrer" : undefined}
+    target={isExternal ? "_blank" : undefined}
+    rel={isExternal ? "noopener noreferrer" : undefined}
   >
     {props.children}
   </a>
