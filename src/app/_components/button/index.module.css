@@ -8,6 +8,10 @@
   font-weight: 700;
 }
 
+.button:focus {
+  box-shadow: #3e3e3e 0 0 0 1px;
+}
+
 .button:hover {
   background-color: #3e3e3e;
 }
