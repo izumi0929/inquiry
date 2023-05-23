@@ -70,6 +70,7 @@ export const useInquiryForm = () => {
   const [loading, setLoading] = useState(false)
   const toggleConfirmMode = useCallback(() => {
     setConfirmMode((prev) => !prev)
+    window.scrollTo(0, 0)
   }, [])
 
   const {
