@@ -1,7 +1,8 @@
 module.exports = {
+  roots: ["<rootDir>/src"],
   testMatch: ["**/spec/**/*.+(ts|tsx|js)", "**/*.spec.(ts|tsx)"],
   transform: {
-    "^.+\\.(js|ts|tsx)$": ["ts-jest"]
+    "^.+\\.(js|ts|tsx)$": "ts-jest"
   },
   globals: {
     "ts-jest": {
@@ -11,5 +12,6 @@ module.exports = {
   moduleNameMapper: {
     "~/(.*)": "<rootDir>/src/$1"
   },
-  testEnvironment: "jsdom"
+  testEnvironment: "jest-environment-jsdom",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
 }
