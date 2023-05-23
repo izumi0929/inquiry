@@ -13,7 +13,8 @@ const formItems = [
     label: "名前(姓名)",
     name: "name",
     required: true,
-    placeholder: "山田太郎"
+    placeholder: "山田太郎",
+    autocomplete: "name"
   },
   {
     type: "text",
@@ -27,21 +28,24 @@ const formItems = [
     label: "社名",
     name: "company",
     required: false,
-    placeholder: "○○株式会社"
+    placeholder: "○○株式会社",
+    autocomplete: "organization"
   },
   {
     type: "email",
     label: "メールアドレス",
     name: "email",
     required: true,
-    placeholder: "taro.mountain@gmail.com"
+    placeholder: "taro.mountain@gmail.com",
+    autocomplete: "email"
   },
   {
     type: "postalcode",
     label: "郵便番号",
     name: "postalcode",
     required: false,
-    placeholder: "1234567"
+    placeholder: "1234567",
+    autocomplete: "postal-code"
   },
   {
     type: "text",
@@ -55,7 +59,8 @@ const formItems = [
     label: "電話番号",
     name: "tel",
     required: false,
-    placeholder: "0801234567"
+    placeholder: "0801234567",
+    autocomplete: "tel"
   },
   {
     type: "select",

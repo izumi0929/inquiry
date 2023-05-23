@@ -4,14 +4,16 @@ import { UseFormRegister } from "react-hook-form"
 import { FormInput } from "@/app/_components/form-input"
 import { FormLabel } from "@/app/_components/form-label"
 import {
-  FormItem,
+  FormItemEmail,
+  FormItemTel,
+  FormItemText,
   FormValues
 } from "@/app/inquiry/_components/inquiry-form/type"
 
 import styles from "./index.module.css"
 
 type Props = {
-  formItem: FormItem
+  formItem: FormItemText | FormItemEmail | FormItemTel
   register: UseFormRegister<FormValues>
   errorMessage?: string
 }
@@ -28,6 +30,8 @@ export const FormInputField: FC<Props> = ({
         type={formItem.type}
         {...register(formItem.name, { required: formItem.required })}
         errorMessage={errorMessage}
+        placeholder={formItem.placeholder}
+        autoComplete={formItem.autocomplete}
       />
     </div>
   )

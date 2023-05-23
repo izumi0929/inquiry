@@ -4,14 +4,14 @@ import { UseFormRegister } from "react-hook-form"
 import { FormLabel } from "@/app/_components/form-label"
 import { FormTextarea } from "@/app/_components/form-textarea"
 import {
-  FormItem,
+  FormItemTextarea,
   FormValues
 } from "@/app/inquiry/_components/inquiry-form/type"
 
 import styles from "./index.module.css"
 
 type Props = {
-  formItem: FormItem
+  formItem: FormItemTextarea
   register: UseFormRegister<FormValues>
   errorMessage?: string
 }
@@ -26,6 +26,8 @@ export const FormTextareaField: FC<Props> = ({
       <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
       <FormTextarea
         {...register(formItem.name, { required: formItem.required })}
+        placeholder={formItem.placeholder}
+        autoComplete={formItem.autocomplete}
         errorMessage={errorMessage}
       />
     </div>

@@ -18,6 +18,11 @@ body {
     "Segoe UI", sans-serif;
 }
 
+input::placeholder,
+textarea::placeholder {
+  opacity: 0.3;
+}
+
 h1 {
   font-size: 1.8em;
 }

@@ -5,14 +5,14 @@ import { Button } from "@/app/_components/button"
 import { FormInput } from "@/app/_components/form-input"
 import { FormLabel } from "@/app/_components/form-label"
 import {
-  FormItem,
+  FormItemPostalcode,
   FormValues
 } from "@/app/inquiry/_components/inquiry-form/type"
 
 import styles from "./index.module.css"
 
 type Props = {
-  formItem: FormItem
+  formItem: FormItemPostalcode
   register: UseFormRegister<FormValues>
   handleSearch: () => void
   errorMessage?: string
@@ -33,6 +33,8 @@ export const FormPostalcodeField: FC<Props> = ({
             type={formItem.type}
             {...register(formItem.name, { required: formItem.required })}
             errorMessage={errorMessage}
+            placeholder={formItem.placeholder}
+            autoComplete={formItem.autocomplete}
           />
         </div>
         <Button
