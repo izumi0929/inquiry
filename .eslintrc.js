@@ -6,6 +6,16 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json"
   },
+  plugins: [
+    "import",
+    "import-access",
+    "strict-dependencies",
+    "unused-imports",
+    "jest",
+    "jest-dom",
+    "testing-library",
+    "react-hooks"
+  ],
   extends: [
     "next",
     "next/core-web-vitals",
@@ -17,7 +27,16 @@ module.exports = {
     "plugin:import/typescript",
     "prettier"
   ],
-  plugins: ["import", "import-access", "strict-dependencies", "unused-imports"],
+  orverrides: [
+    {
+      files: ["*.spec.ts", "*.spec.tsx"],
+      extends: [
+        "plugin:jest/recommended",
+        "plugin:jest-dom/recommended",
+        "plugin:testing-library/react"
+      ]
+    }
+  ],
   rules: {
     "no-console": "error",
     "no-debugger": "error",
