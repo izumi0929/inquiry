@@ -55,6 +55,7 @@ const formDefaultValues = {
 
 export const useInquiryForm = () => {
   const [confirmMode, setConfirmMode] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const toggleConfirmMode = useCallback(() => {
     setConfirmMode((prev) => !prev)
@@ -185,21 +186,23 @@ export const useInquiryForm = () => {
 
   const renderButtons = useCallback(() => {
     return confirmMode ? (
-      <InConfirmButtons onClickBack={toggleConfirmMode} />
+      <InConfirmButtons onClickBack={toggleConfirmMode} loading={loading} />
     ) : (
       <InEditButtons onClickConfirm={handleSubmit(toggleConfirmMode)} />
     )
-  }, [confirmMode, toggleConfirmMode, handleSubmit])
+  }, [confirmMode, loading, toggleConfirmMode, handleSubmit])
 
   const handleComplete = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
+      if (loading) return
+      setLoading(true)
       const form = e.target as HTMLFormElement
       // eslint-disable-next-line no-console
       console.log("送信データ", getValues())
       form.submit()
     },
-    [getValues]
+    [getValues, loading]
   )
 
   return {
