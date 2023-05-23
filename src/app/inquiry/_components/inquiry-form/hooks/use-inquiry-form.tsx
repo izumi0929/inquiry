@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { FormEvent, useCallback, useState } from "react"
+import { FormEvent, useCallback, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -50,8 +50,24 @@ const formDefaultValues = {
 
 export const useInquiryForm = () => {
   const [confirmMode, setConfirmMode] = useState(false)
-  const [loading, setLoading] = useState(false)
 
+  // 確認モード時のブラウザバックでは確認モードを解除するのみ
+  useEffect(() => {
+    const handlePopstate = () => {
+      setConfirmMode(false)
+    }
+    if (confirmMode) {
+      history.pushState(null, "", null)
+      window.addEventListener("popstate", handlePopstate, false)
+    } else {
+      window.removeEventListener("popstate", handlePopstate, false)
+    }
+    return () => {
+      window.removeEventListener("popstate", handlePopstate, false)
+    }
+  }, [confirmMode])
+
+  const [loading, setLoading] = useState(false)
   const toggleConfirmMode = useCallback(() => {
     setConfirmMode((prev) => !prev)
   }, [])
