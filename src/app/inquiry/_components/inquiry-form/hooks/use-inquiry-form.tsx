@@ -4,15 +4,10 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { searchAddressByPostalcode } from "@/api/search-address"
-import { FormCheckbox } from "@/app/_components/form-checkbox"
-import { FormCheckboxConfirm } from "@/app/_components/form-checkbox/confirm"
-import { InConfirmButtons } from "@/app/inquiry/_components/action-buttons/in-confirm-buttons"
-import { InEditButtons } from "@/app/inquiry/_components/action-buttons/in-edit-buttons"
-import { FormConfirmField } from "@/app/inquiry/_components/form-confirm-field"
-import { FormInputField } from "@/app/inquiry/_components/form-input-field"
-import { FormPostalcodeField } from "@/app/inquiry/_components/form-postalcode-field"
-import { FormSelectField } from "@/app/inquiry/_components/form-select-field"
-import { FormTextareaField } from "@/app/inquiry/_components/form-textarea-field"
+import { InConfirmButtons } from "@/app/inquiry/_components/in-confirm-buttons"
+import { InConfirmForm } from "@/app/inquiry/_components/in-confirm-form"
+import { InEditButtons } from "@/app/inquiry/_components/in-edit-buttons"
+import { InEditForm } from "@/app/inquiry/_components/in-edit-form"
 import {
   FormItem,
   FormValues
@@ -74,6 +69,19 @@ export const useInquiryForm = () => {
     resolver: zodResolver(inquiryFormSchemea)
   })
 
+  const handleComplete = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      if (loading) return
+      setLoading(true)
+      const form = e.target as HTMLFormElement
+      // eslint-disable-next-line no-console
+      console.log("送信データ", getValues())
+      form.submit()
+    },
+    [getValues, loading]
+  )
+
   const searchAddress = useCallback(
     async (postalcode: string) => {
       clearErrors("postalcode")
@@ -90,98 +98,21 @@ export const useInquiryForm = () => {
     [setValue, setError, clearErrors]
   )
 
-  const renderFormItemConfirm = useCallback(
-    (formItem: FormItem) => {
-      switch (formItem.type) {
-        case "checkbox":
-          return (
-            <FormCheckboxConfirm
-              name={formItem.name}
-              label={formItem.label}
-              value={getValues(formItem.name) ? "1" : ""}
-            />
-          )
-        case "select":
-          return (
-            <FormConfirmField
-              formItem={formItem}
-              value={
-                formItem.options.find(
-                  (option) => option.value === getValues(formItem.name)
-                )?.label || ""
-              }
-            />
-          )
-        default:
-          return (
-            <FormConfirmField
-              formItem={formItem}
-              value={getValues(formItem.name) as string}
-            />
-          )
-      }
-    },
-    [getValues]
-  )
-
-  const renderFormItemEdit = useCallback(
-    (formItem: FormItem) => {
-      switch (formItem.type) {
-        case "textarea":
-          return (
-            <FormTextareaField
-              formItem={formItem}
-              register={register}
-              errorMessage={errors[formItem.name]?.message}
-            />
-          )
-        case "select":
-          return (
-            <FormSelectField
-              formItem={formItem}
-              register={register}
-              errorMessage={errors[formItem.name]?.message}
-            />
-          )
-        case "checkbox":
-          return (
-            <FormCheckbox
-              {...register(formItem.name, { required: formItem.required })}
-              label={formItem.label}
-              errorMessage={errors[formItem.name]?.message}
-            />
-          )
-        case "postalcode":
-          return (
-            <FormPostalcodeField
-              formItem={formItem}
-              register={register}
-              errorMessage={errors[formItem.name]?.message}
-              handleSearch={async () =>
-                await searchAddress(getValues("postalcode"))
-              }
-            />
-          )
-        default:
-          return (
-            <FormInputField
-              formItem={formItem}
-              register={register}
-              errorMessage={errors[formItem.name]?.message}
-            />
-          )
-      }
-    },
-    [errors, register, getValues, searchAddress]
-  )
-
   const renderFormItem = useCallback(
     (formItem: FormItem) => {
-      return confirmMode
-        ? renderFormItemConfirm(formItem)
-        : renderFormItemEdit(formItem)
+      return confirmMode ? (
+        <InConfirmForm formItem={formItem} getValues={getValues} />
+      ) : (
+        <InEditForm
+          formItem={formItem}
+          register={register}
+          errors={errors}
+          searchAddress={searchAddress}
+          getValues={getValues}
+        />
+      )
     },
-    [confirmMode, renderFormItemConfirm, renderFormItemEdit]
+    [errors, confirmMode, register, getValues, searchAddress]
   )
 
   const renderButtons = useCallback(() => {
@@ -191,19 +122,6 @@ export const useInquiryForm = () => {
       <InEditButtons onClickConfirm={handleSubmit(toggleConfirmMode)} />
     )
   }, [confirmMode, loading, toggleConfirmMode, handleSubmit])
-
-  const handleComplete = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      if (loading) return
-      setLoading(true)
-      const form = e.target as HTMLFormElement
-      // eslint-disable-next-line no-console
-      console.log("送信データ", getValues())
-      form.submit()
-    },
-    [getValues, loading]
-  )
 
   return {
     renderFormItem,
