@@ -6,11 +6,13 @@ module.exports = {
   },
   globals: {
     "ts-jest": {
-      tsconfig: "test/tsconfig.jest.json"
+      tsconfig: "test/tsconfig.jest.json",
+      diagnostics: false
     }
   },
   moduleNameMapper: {
-    "~/(.*)": "<rootDir>/src/$1"
+    "@/(.*)": "<rootDir>/src/$1",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   },
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"]
