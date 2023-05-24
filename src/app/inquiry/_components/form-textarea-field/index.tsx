@@ -23,12 +23,15 @@ export const FormTextareaField: FC<Props> = ({
 }) => {
   return (
     <div className={styles.wrapper}>
-      <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
+      <FormLabel htmlFor={formItem.name} required={formItem.required}>
+        {formItem.label}
+      </FormLabel>
       <FormTextarea
         {...register(formItem.name, { required: formItem.required })}
         placeholder={formItem.placeholder}
         autoComplete={formItem.autocomplete}
         errorMessage={errorMessage}
+        id={formItem.name}
       />
     </div>
   )

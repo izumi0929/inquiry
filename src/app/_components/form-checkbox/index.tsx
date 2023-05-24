@@ -18,6 +18,7 @@ export const FormCheckbox = forwardRef<HTMLInputElement, Props>(
             {...props}
             ref={ref}
             type="checkbox"
+            role="checkbox"
           />
           <span
             className={

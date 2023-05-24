@@ -13,11 +13,20 @@ type Props = {
 export const FormConfirmField: FC<Props> = ({ formItem, value }) => {
   return (
     <div className={styles.wrapper}>
-      <FormLabel required={formItem.required} withChip={false}>
+      <FormLabel
+        htmlFor={formItem.name}
+        required={formItem.required}
+        withChip={false}
+      >
         {formItem.label}
       </FormLabel>
       <p>{value || "-"}</p>
-      <input hidden name={formItem.name} defaultValue={value} />
+      <input
+        hidden
+        name={formItem.name}
+        id={formItem.name}
+        defaultValue={value}
+      />
     </div>
   )
 }

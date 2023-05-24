@@ -23,11 +23,14 @@ export const FormSelectField: FC<Props> = ({
 }) => {
   return (
     <div className={styles.wrapper}>
-      <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
+      <FormLabel htmlFor={formItem.name} required={formItem.required}>
+        {formItem.label}
+      </FormLabel>
       <FormSelect
         {...register(formItem.name, { required: formItem.required })}
         errorMessage={errorMessage}
         options={formItem.options}
+        id={formItem.name}
       />
     </div>
   )

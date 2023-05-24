@@ -25,13 +25,16 @@ export const FormInputField: FC<Props> = ({
 }) => {
   return (
     <div className={styles.wrapper}>
-      <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
+      <FormLabel htmlFor={formItem.name} required={formItem.required}>
+        {formItem.label}
+      </FormLabel>
       <FormInput
         type={formItem.type}
         {...register(formItem.name, { required: formItem.required })}
         errorMessage={errorMessage}
         placeholder={formItem.placeholder}
         autoComplete={formItem.autocomplete}
+        id={formItem.name}
       />
     </div>
   )

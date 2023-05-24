@@ -16,6 +16,7 @@ export const FormCheckboxConfirm = forwardRef<HTMLInputElement, Props>(
           {...props}
           ref={ref}
           type="checkbox"
+          role="checkbox"
           readOnly
           checked
         />

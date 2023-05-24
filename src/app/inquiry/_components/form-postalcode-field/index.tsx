@@ -26,7 +26,9 @@ export const FormPostalcodeField: FC<Props> = ({
 }) => {
   return (
     <div className={styles.wrapper}>
-      <FormLabel required={formItem.required}>{formItem.label}</FormLabel>
+      <FormLabel htmlFor={formItem.name} required={formItem.required}>
+        {formItem.label}
+      </FormLabel>
       <div className={styles.inputWrapper}>
         <div>
           <FormInput
@@ -35,6 +37,7 @@ export const FormPostalcodeField: FC<Props> = ({
             errorMessage={errorMessage}
             placeholder={formItem.placeholder}
             autoComplete={formItem.autocomplete}
+            id={formItem.name}
           />
         </div>
         <Button
