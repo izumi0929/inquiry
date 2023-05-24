@@ -8,9 +8,14 @@ import styles from "./index.module.css"
 type Props = {
   formItem: FormItem
   value: string
+  displayValue?: string
 }
 
-export const FormConfirmField: FC<Props> = ({ formItem, value }) => {
+export const FormConfirmField: FC<Props> = ({
+  formItem,
+  value,
+  displayValue
+}) => {
   return (
     <div className={styles.wrapper}>
       <FormLabel
@@ -20,7 +25,7 @@ export const FormConfirmField: FC<Props> = ({ formItem, value }) => {
       >
         {formItem.label}
       </FormLabel>
-      <p>{value || "-"}</p>
+      <p>{displayValue || value || "-"}</p>
       <input
         hidden
         name={formItem.name}

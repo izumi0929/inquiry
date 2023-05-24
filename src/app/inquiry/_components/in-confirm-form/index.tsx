@@ -27,11 +27,12 @@ export const InConfirmForm: FC<Props> = ({ formItem, getValues }) => {
       return (
         <FormConfirmField
           formItem={formItem}
-          value={
+          displayValue={
             formItem.options.find(
               (option) => option.value === getValues(formItem.name)
             )?.label || ""
           }
+          value={getValues(formItem.name) as string}
         />
       )
     default:
