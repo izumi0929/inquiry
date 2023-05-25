@@ -37,6 +37,7 @@ export const FormPostalcodeField: FC<Props> = ({
             errorMessage={errorMessage}
             placeholder={formItem.placeholder}
             autoComplete={formItem.autocomplete}
+            autoFocus={formItem.autofocus}
             id={formItem.name}
           />
         </div>

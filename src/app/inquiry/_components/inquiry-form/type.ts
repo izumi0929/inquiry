@@ -25,8 +25,9 @@ export type FormItemBase = {
   type: FormType
   label: string
   name: keyof FormValues
-  required: boolean
+  required: HTMLInputElement["required"]
   autocomplete?: HTMLInputElement["autocomplete"]
+  autofocus?: HTMLInputElement["autofocus"]
 }
 
 export type FormItemText = FormItemBase & {

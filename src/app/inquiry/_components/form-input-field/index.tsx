@@ -34,6 +34,7 @@ export const FormInputField: FC<Props> = ({
         errorMessage={errorMessage}
         placeholder={formItem.placeholder}
         autoComplete={formItem.autocomplete}
+        autoFocus={formItem.autofocus}
         id={formItem.name}
       />
     </div>

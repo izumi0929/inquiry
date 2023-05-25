@@ -14,7 +14,8 @@ const formItems = [
     name: "name",
     required: true,
     placeholder: "山田太郎",
-    autocomplete: "name"
+    autocomplete: "name",
+    autofocus: true
   },
   {
     type: "text",
