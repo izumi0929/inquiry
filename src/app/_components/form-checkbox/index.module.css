@@ -87,7 +87,7 @@
   width: 5px;
 }
 
-.input:focus + .checkbox_icon::before {
+.input:focus-visible + .checkbox_icon::before {
   box-shadow: 0 0 0 1px var(--blue);
 }
 

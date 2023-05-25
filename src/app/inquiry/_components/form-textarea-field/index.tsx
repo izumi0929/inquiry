@@ -31,6 +31,7 @@ export const FormTextareaField: FC<Props> = ({
         placeholder={formItem.placeholder}
         autoComplete={formItem.autocomplete}
         errorMessage={errorMessage}
+        required={formItem.required}
         id={formItem.name}
       />
     </div>

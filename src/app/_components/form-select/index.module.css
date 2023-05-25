@@ -31,13 +31,13 @@
   outline: 0;
 }
 
-.select:focus {
+.select:focus-visible {
   border: 1px solid var(--blue);
   box-shadow: 0 0 0 1px var(--blue);
   border-radius: 4px;
 }
 
-.selelct:focus {
+.selelct:focus-visible {
   border-color: var(--blue);
 }
 

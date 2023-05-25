@@ -35,6 +35,7 @@ export const FormInputField: FC<Props> = ({
         placeholder={formItem.placeholder}
         autoComplete={formItem.autocomplete}
         autoFocus={formItem.autofocus}
+        required={formItem.required}
         id={formItem.name}
       />
     </div>

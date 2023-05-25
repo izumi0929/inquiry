@@ -6,7 +6,7 @@
   flex-grow: 1;
 }
 
-.input:focus {
+.input:focus-visible {
   border: 1px solid var(--blue);
   box-shadow: 0 0 0 1px var(--blue);
   outline: none;
@@ -17,7 +17,7 @@
   border-color: var(--red);
 }
 
-.input_error:focus {
+.input_error:focus-visible {
   border: 1px solid var(--red);
   box-shadow: 0 0 0 1px var(--red);
 }
