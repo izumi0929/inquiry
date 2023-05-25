@@ -21,7 +21,8 @@ https://inquiry-gules.vercel.app/inquiry
 
 送信時にブラウザのコンソールにも送信データは出力していますが、遷移してしまうので確認が難しいです。
 （開発者ツールで見ることは可能です。）
-<img width="561" alt="スクリーンショット 2023-05-25 20 27 06" src="https://github.com/izumi0929/inquiry/assets/58094202/4b96f483-ff96-471c-9949-ab3d8171537a">
+
+<img width="561" alt="スクリーンショット 2023-05-25 20 27 06" src="https://github.com/izumi0929/inquiry/assets/58094202/6537e9af-d679-4130-ba2c-dda6c5834149">
 
 送信データの確認はローカルで Next を立ち上げていただく必要があります。
 パッケージインストール後
@@ -38,7 +39,7 @@ pnpm dev
 [http://localhost:3000](http://localhost:3000) から同様の手順で送信できます。
 出力データはターミナルに表示されます。
 
-![スクリーンショット 2023-05-25 20 27 56](https://github.com/izumi0929/inquiry/assets/58094202/a1eb6d1a-d4c4-466c-b68c-7b61ee7c26ef)
+![スクリーンショット 2023-05-25 20 27 56](https://github.com/izumi0929/inquiry/assets/58094202/c42bd23d-909f-4e75-bfb3-64ebb66ef729)
 
 ### こだわりポイント
 
