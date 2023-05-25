@@ -24,6 +24,7 @@ https://inquiry-gules.vercel.app/inquiry
 <img width="561" alt="スクリーンショット 2023-05-25 20 27 06" src="https://github.com/izumi0929/inquiry/assets/58094202/4b96f483-ff96-471c-9949-ab3d8171537a">
 
 送信データの確認はローカルで Next を立ち上げていただく必要があります。
+パッケージインストール後
 
 ```bash
 npm run dev
