@@ -13,7 +13,7 @@ export const CompletedBody: FC = () => {
   }, [router])
 
   return (
-    <section className={styles.container}>
+    <article className={styles.container}>
       <div className={styles.contentWrapper}>
         <div>
           <h4>お問い合わせありがとうございます。</h4>
@@ -33,6 +33,6 @@ export const CompletedBody: FC = () => {
           お問い合わせトップに戻る
         </Button>
       </div>
-    </section>
+    </article>
   )
 }
