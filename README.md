@@ -1,8 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## お問い合わせフォーム
 
-## Getting Started
+### 動作確認手順
 
-First, run the development server:
+フォームの入力・確認・送信だけであれば以下の URL から確認可能です。
+
+https://inquiry-gules.vercel.app/inquiry
+
+- 入力画面
+  - 必須項目を入力して、「内容を確認」ボタンを押すと、確認画面（モード）移ります。
+  - メールアドレスは形式が誤っているとバリデーションに引っかかります。
+  - 住所は郵便番号から検索可能です。
+- 確認画面
+  - 入力した内容を確認できます。
+  - 未入力の項目はハイフン(-)で表示されます。
+  - 「戻る」ボタンを押すと編集画面（モード）に戻ります。
+  - 「送信」ボタンを押すと送信完了画面に移ります。
+- 完了画面
+  - 送信が完了した旨の文言が表示されます。
+  - 「お問い合わせトップに戻る」ボタンを押すと編集画面に戻ります。
+
+送信時にブラウザのコンソールにも送信データは出力していますが、遷移してしまうので確認が難しいです。
+（開発者ツールで見ることは可能です。）
+<img width="561" alt="スクリーンショット 2023-05-25 20 27 06" src="https://github.com/izumi0929/inquiry/assets/58094202/4b96f483-ff96-471c-9949-ab3d8171537a">
+
+送信データの確認はローカルで Next を立ち上げていただく必要があります。
 
 ```bash
 npm run dev
@@ -12,23 +33,8 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+サーバーが立ち上がったら
+[http://localhost:3000](http://localhost:3000) から同様の手順で送信できます。
+出力データはターミナルに表示されます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![スクリーンショット 2023-05-25 20 27 56](https://github.com/izumi0929/inquiry/assets/58094202/a1eb6d1a-d4c4-466c-b68c-7b61ee7c26ef)
